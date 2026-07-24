@@ -1,6 +1,6 @@
 # MIYM — Development Guide
 
-**Status:** 🟡 In Development (kicked off 2026-07-24)
+**Status:** 🟢 Live at https://miym.dev (kicked off + shipped 2026-07-24)
 **Type:** Personal portfolio / CV site (frontend now, backend later)
 **Tech Stack:** React 18 + Vite 5 · react-router-dom · react-tabs · vanilla CSS theme system
 **Ship Target:** 2026-08-03 (10-day cadence)
@@ -38,15 +38,19 @@ edit surgically (targeted string replacement), don't reformat whole files, and n
 introduce user-supplied HTML into them once a backend exists.
 
 ## Deployment
-- **Primary:** GitHub Pages via `gh-pages` (dedicated repo) — see `templates/github-setup-template.md`.
+- **Primary:** GitHub Pages via `gh-pages` → **https://miym.dev** (repo `dlysen/miymDev`, `gh-pages` branch).
+  Deploy with `cd app && npm run deploy`. Cloudflare proxies the domain — purge its cache after a deploy.
 - **Backup:** `dist.zip` for cPanel upload via `tools/package-cpanel.sh` (npm `postbuild` hook;
   needed because the SMB workspace forces `0700` perms that cPanel Extract preserves).
 - Vite `base` must match the domain type: `/` for a custom/apex domain, `/[repo]/` for project pages.
 
 ## GitHub Repository Setup
-- Create a dedicated GitHub repository for this project (**not yet created**).
-- Link it to `projects/miym/` and store a classic PAT in `app/.env` as `GITHUB_TOKEN`.
-- Scopes: `public_repo` (or `repo` if private) + `workflow` if Actions/Pages deploy is used.
+- Repo: **https://github.com/dlysen/miymDev** (public), linked to `projects/miym/` — repo root is the
+  project root, so `app/` is a subfolder and a `backend/` can join it later.
+- Classic PAT lives in `projects/miym/.env.local` as `GITHUB_TOKEN` (gitignored, account `dlysen`).
+- Push without leaking the token into `.git/config`:
+  `B64=$(printf 'dlysen:%s' "$GITHUB_TOKEN" | base64 | tr -d '\n'); git -c http.extraheader="Authorization: Basic $B64" push origin main`
+- The pre-2026-07-24 Tailwind site is preserved on branch `archive/2026-06-tailwind-site`.
 
 ## Phases
 ### Phase 1: Scaffold + scope ✅
@@ -54,22 +58,23 @@ introduce user-supplied HTML into them once a backend exists.
 - [x] Project CLAUDE.md + sessions/MILESTONES.md + first session file
 - [x] Scope confirmed: personal portfolio, content drafted from real workspace data
 
-### Phase 2: Content replacement 🟡
-- [ ] `site.js` — name, brand, roles, social, nav
-- [ ] Home hero
-- [ ] About + services
-- [ ] Resume (experience, education, skills, cadence)
-- [ ] Portfolio (real projects: AEOS, LegacyPrime, MoVi, FBMX, AEOS Vesting)
-- [ ] Blog placeholder posts
-- [ ] Contact (email, location, map, form target)
-- [ ] Remove/replace every "Patrick" / Paris / lorem string
+### Phase 2: Content replacement ✅
+- [x] `site.js` — name, brand, roles, social, nav
+- [x] Home hero
+- [x] About + services
+- [x] Resume (experience, education, skills, cadence)
+- [x] Portfolio (real projects: AEOS, LegacyPrime, MoVi, FBMX, AEOS Vesting)
+- [x] Blog placeholder posts
+- [x] Contact (email, location, map, form target)
+- [x] Remove/replace every "Patrick" / Paris / lorem string
 - [ ] Swap template imagery for real assets
 
-### Phase 3: Ship the frontend ⏳
-- [ ] Dedicated GitHub repo + PAT in `app/.env`
-- [ ] `gh-pages` deploy scripts + Vite `base` + `.nojekyll` / `404.html` / `--dotfiles`
-- [ ] `package-cpanel.sh` postbuild → `dist.zip` backup
-- [ ] Custom domain + Enforce HTTPS
+### Phase 3: Ship the frontend 🟡
+- [x] Repo `dlysen/miymDev` + PAT in `.env.local`
+- [x] `gh-pages` deploy scripts + Vite `base` + `.nojekyll` / `404.html` / `--dotfiles`
+- [x] `package-cpanel.sh` postbuild → `dist.zip` backup
+- [x] Custom domain `miym.dev`
+- [ ] Enforce HTTPS (check Cloudflare SSL mode first)
 
 ### Phase 4: Backend ⏳
 - [ ] Contact form → API (store + email)
@@ -78,12 +83,13 @@ introduce user-supplied HTML into them once a backend exists.
 - [ ] Convert the blog + portfolio sections from static HTML to data-driven JSX
 
 ## Current State
-Frontend runs; every section still ships the original template's placeholder copy
-("Patrick", Paris, lorem services). Content replacement is the active work.
+Live at https://miym.dev with real content in every section. Remaining gaps are assets and voice:
+stock imagery throughout, the "Download CV" button is an empty anchor, and the copy is first-person
+personal CV while the previous miym.dev branded MIYM as a software development company.
 
 ## License note
 The upstream design is the commercial ThemeForest theme "Patrick — Personal CV/vCard
 React Template" (item 35737202). Buy a license before publishing anything derived from it.
 
 ## Next Phase
-Phase 2 — content replacement, starting with `site.js` and the Home/About sections.
+Real imagery + the brand-voice decision, then Phase 4 (contact-form API → blog CMS → admin).

@@ -1,8 +1,9 @@
-# Patrick — Editable Vite + React Template
+# MIYM — Dangal Macatangay's Portfolio & CV
 
-A clean, editable rebuild of the `patrick-pearl.vercel.app` portfolio/CV theme.
-The original was a minified Create React App bundle; this project reconstructs it
-as real, editable React source + faithful section markup.
+The frontend for **https://miym.dev** — a Vite + React portfolio/CV site.
+Built on a clean, editable rebuild of a commercial CV/vCard theme: the original
+shipped as a minified CRA bundle, this reconstructs it as real React source plus
+faithful section markup, with all content replaced.
 
 > ⚠️ **License:** the original is a commercial ThemeForest theme
 > ("Patrick — Personal CV/vCard React Template", item 35737202). This rebuild is
@@ -14,9 +15,13 @@ as real, editable React source + faithful section markup.
 ```bash
 npm install
 npm run dev        # → http://localhost:5173
-npm run build      # production build → dist/
+npm run build      # production build → dist/ (+ 404.html, .nojekyll, ../dist.zip)
 npm run preview    # serve the build
+npm run deploy     # build → publish dist/ to the gh-pages branch (miym.dev)
 ```
+
+Deploy targets: **GitHub Pages** (primary, `gh-pages` branch, CNAME `miym.dev`) and a
+cPanel-ready `dist.zip` written by the shared `tools/package-cpanel.sh` postbuild hook.
 
 ## Architecture
 
@@ -84,4 +89,4 @@ public/                       # served at site root — CSS url() refs resolve u
   Google Maps instead, replace the iframe with a Google "Embed a map" iframe
   (Maps Embed API key) or the `@react-google-maps/api` component.
 
-_Rebuilt 2026-07-24 from patrick-pearl.vercel.app._
+_Template rebuilt 2026-07-24; content replaced and shipped to miym.dev the same day._
