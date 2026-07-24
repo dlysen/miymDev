@@ -3,6 +3,7 @@
 **Project Status:** 🟢 Phase 3/4 — live at https://miym.dev
 **Last Updated:** 2026-07-24
 **Next Session Focus:** Real imagery + brand-voice call, then Phase 4 backend
+**Session Status:** CLOSED 2026-07-24 — kickoff, content, deploy and CV all shipped in one session
 
 ---
 
@@ -59,6 +60,7 @@
 - ✅ Old June 2026 site backed up to `archive/2026-06-tailwind-site`, then `main` force-pushed
 - ✅ Deployed to GitHub Pages — **https://miym.dev is live** with the new site
 - ✅ Two-page CV PDF generated from `docs/cv.html` (headless Chrome) and linked from the About page
+- 🏁 **Milestone: first online resume in twenty years** — kickoff to live domain in one session
 
 ---
 

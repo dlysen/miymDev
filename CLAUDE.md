@@ -31,6 +31,13 @@ Frontend commands run from `app/` (`cd app && npm run dev|build|preview`).
 | Blog list / post pages | `app/src/sections/blog*.html` |
 | Accent colors | `app/public/css/theme-colors/*.css` + `themeColors` in `site.js` |
 | Global layout / fonts | `app/public/css/styles.css` |
+| The downloadable CV | `docs/cv.html`, then re-render to `app/public/dangal_macatangay_cv.pdf` (see below) |
+
+Regenerate the CV PDF after editing `docs/cv.html`:
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+  --no-pdf-header-footer --print-to-pdf="app/public/dangal_macatangay_cv.pdf" "file://$PWD/docs/cv.html"
+```
 
 Section bodies are **static HTML imported with Vite `?raw`** and injected via
 `dangerouslySetInnerHTML`. They are minified single-line files from the original template —
@@ -74,6 +81,7 @@ introduce user-supplied HTML into them once a backend exists.
 - [x] `gh-pages` deploy scripts + Vite `base` + `.nojekyll` / `404.html` / `--dotfiles`
 - [x] `package-cpanel.sh` postbuild → `dist.zip` backup
 - [x] Custom domain `miym.dev`
+- [x] CV PDF (`docs/cv.html` → `app/public/dangal_macatangay_cv.pdf`) linked from the About page
 - [ ] Enforce HTTPS (check Cloudflare SSL mode first)
 
 ### Phase 4: Backend ⏳
@@ -83,9 +91,9 @@ introduce user-supplied HTML into them once a backend exists.
 - [ ] Convert the blog + portfolio sections from static HTML to data-driven JSX
 
 ## Current State
-Live at https://miym.dev with real content in every section. Remaining gaps are assets and voice:
-stock imagery throughout, the "Download CV" button is an empty anchor, and the copy is first-person
-personal CV while the previous miym.dev branded MIYM as a software development company.
+Live at https://miym.dev with real content in every section and a downloadable CV. Remaining gaps
+are assets and voice: stock imagery throughout, and the copy is first-person personal CV while the
+previous miym.dev branded MIYM as a software development company.
 
 ## License note
 The upstream design is the commercial ThemeForest theme "Patrick — Personal CV/vCard
