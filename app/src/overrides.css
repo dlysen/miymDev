@@ -1,0 +1,91 @@
+/* ── App-level overrides (kept separate from the vendored template styles.css) ── */
+
+/* Color switcher panel: docked to the BOTTOM of the viewport instead of top:12%.
+   Buy Template sits on top of the menu, the gear toggle became the footer tab. */
+.theme_panel {
+  top: auto;
+  bottom: 0;
+}
+.theme_panel .theme_menu {
+  /* no trailing gap — the last demo row sits flush with the panel's bottom edge,
+     level with the gear tab */
+  padding-bottom: 0;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* gear tab rides the bottom edge of the panel */
+.toggle_bts {
+  top: auto;
+  bottom: 0;
+}
+/* buy button is the first element now — drop the top gap it used as a footer,
+   and give the first heading the spacing instead */
+.theme_menu .buy-btn {
+  margin: 0;
+}
+.theme_menu .buy-btn + h4 {
+  margin-top: 20px;
+}
+/* Telegram mark in the panel's CTA (template only styled the old .ion cart) */
+.theme_menu .buy-btn .icon {
+  margin: -2px 8px 0 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  color: #fefefe;
+}
+
+/* Mobile: the opened nav dropdown must sit ABOVE the color switcher panel
+   (.theme_panel is position:fixed; z-index:999). The header is z-index:113,
+   so without this the panel overlaps the right side of the open menu. */
+@media (max-width: 1023px) {
+  .header.opened {
+    z-index: 1001;
+  }
+  .header.opened .top-menu {
+    z-index: 1001;
+  }
+
+  /* When the burger menu is open, show each nav label BELOW its icon
+     (default template hides labels on phones / shows them as side tooltips). */
+  .header.opened .top-menu ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 4px 4px 10px;
+  }
+  .header.opened .top-menu ul li {
+    display: block;
+  }
+  .header.opened .top-menu ul li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header.opened .top-menu ul li a .icon {
+    height: 38px;
+    line-height: 38px;
+  }
+  .header.opened .top-menu ul li a .link {
+    /* undo the desktop tooltip positioning + the <=560px display:none */
+    display: block;
+    position: static;
+    left: auto;
+    top: auto;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    line-height: 1.2;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    font-size: 10px;
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+  .header.opened .top-menu ul li a .link:before {
+    display: none; /* remove the tooltip arrow */
+  }
+}

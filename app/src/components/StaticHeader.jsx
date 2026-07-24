@@ -1,0 +1,43 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { site } from "../data/site.js";
+
+// Non-tab header for standalone routes (blog, blog-post). Nav returns to home.
+export default function StaticHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  return (
+    <ul className={`header${menuOpen ? " opened" : ""}`}>
+      <div className="logo">
+        <Link to="/home"><span>{site.brand}</span></Link>
+      </div>
+      <div className="top-menu">
+        <ul>
+          {site.nav.map((n) => (
+            <li key={n.id} className="react-tabs__tab">
+              <Link to="/home">
+                <span className={`icon ${n.icon}`}></span>
+                <span className="link">{n.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="social">
+        {site.social.map((s, i) => (
+          <a key={i} target="_blank" rel="noreferrer" href={s.href}>
+            <span className={`icon ${s.icon}`}></span>
+          </a>
+        ))}
+      </div>
+      <span
+        className="menu-btn"
+        onClick={() => setMenuOpen((o) => !o)}
+        role="button"
+        aria-label="Toggle menu"
+        aria-expanded={menuOpen}
+      >
+        <span className="m-line"></span>
+      </span>
+    </ul>
+  );
+}
