@@ -58,6 +58,7 @@
       (Focus column instead of Education), no vendor logo wall, no fabricated blog comments
 - ✅ Old June 2026 site backed up to `archive/2026-06-tailwind-site`, then `main` force-pushed
 - ✅ Deployed to GitHub Pages — **https://miym.dev is live** with the new site
+- ✅ Two-page CV PDF generated from `docs/cv.html` (headless Chrome) and linked from the About page
 
 ---
 
@@ -81,7 +82,8 @@
 - [x] Dev server + production build work
 - [x] Placeholder content fully replaced
 - [x] Live asset check — JS/CSS/media/CNAME all 200 with cache-busters
-- [ ] Broken/dead links audited (`#download` CV link and `#contact` CTAs are still anchors)
+- [x] CV PDF generated and wired to the Download CV button
+- [ ] Broken/dead links audited (`#contact` CTAs on the engagement cards are still anchors)
 
 ### Documentation
 - [x] Project CLAUDE.md documents the content model
@@ -101,7 +103,6 @@
 - [ ] Buy the ThemeForest licence (item 35737202) now that the design is publicly deployed
 - [ ] Decide whether the contact section should keep the home address + mobile number public
 - [ ] Add LinkedIn / X / Telegram to `site.js` once handles are confirmed
-- [ ] Wire the "Download CV" button to a real PDF
 - [ ] Confirm Cloudflare SSL mode, then enable Enforce HTTPS on Pages
 - [ ] Start Phase 4 backend (contact form API → blog CMS → admin)
 
